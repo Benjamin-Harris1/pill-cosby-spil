@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+}
+
+img {
+  width: 100%;
+}
+
+#game_elements {
+  width: 10%;
+  height: 10%;
+}
+#screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+#game_background {
+  background-image: url(bar.avif);
+  background-size: cover;
+}
+#game_foreground {
+  background-image: url(martini.png);
+  background-size: cover;
+}
