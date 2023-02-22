@@ -12,32 +12,38 @@
       <div id="game">
         <div id="game_background"></div>
         <div id="game_elements">
-          <div id="pill_container1" class="falling">
+          <div id="pill1_container">
             <img id="pill1_sprite" src="pictures/pill.png" alt="" />
           </div>
-          <div id="pill_container2" class="falling">
+          <div id="pill2_container">
             <img id="pill2_sprite" src="pictures/pill2.png" alt="" />
           </div>
-          <div id="pill_container3" class="falling">
+          <div id="pill3_container">
             <img id="pill3_sprite" src="pictures/pill3.png" alt="" />
           </div>
-          <div id="lemon_container" class="horizontal">
+          <div id="lemon_container">
             <img id="lemon_sprite" src="pictures/lemon.png" alt="" />
           </div>
           <div id="icecube_container" class="hinge">
             <img id="icecube_sprite" src="pictures/Ice Cube.png" alt="" />
           </div>
-          <div id="bottle_container" class="falling">
-            <img id="bottle_sprite" src="pictures/bottle1.png" alt="" />
+          <div id="cuff_container">
+            <img id="cuff_sprite" src="pictures/handcuffs.png" alt="" />
           </div>
-          <div id="olive_container" class="flash">
+          <div id="olive_container" class="invertedhorizontal">
             <img id="olive_sprite" src="pictures/oliven.png" alt="" />
           </div>
         </div>
         <div id="game_foreground"></div>
         <div id="game_ui">
+          <div id="score_board">
+            <span id="pill_count">0</span>
+            <img src="pictures/pill.png" id="pill_image" />
+          </div>
           <div id="healthbar_container">
-            <img id="healthbar_sprite" src="pictures/health_bar.png" alt="" />
+            <img id="heart1" src="pictures/heart.png" class="active_heart" />
+            <img id="heart2" src="pictures/heart.png" class="active_heart" />
+            <img id="heart3" src="pictures/heart.png" class="broken_heart" />
           </div>
         </div>
       </div>
@@ -45,5 +51,6 @@
       <div id="game_over"></div>
       <div id="level_complete"></div>
     </div>
+    <script src="app.js"></script>
   </body>
 </html>
