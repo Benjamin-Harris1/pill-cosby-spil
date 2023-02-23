@@ -42,6 +42,7 @@ img {
   top: 20%;
   left: 33%;
   transform: rotate(-30deg);
+  z-index: 2;
 }
 #pill2_container {
   width: 10%;
@@ -49,6 +50,7 @@ img {
   top: 20%;
   left: 65%;
   transform: rotate(60deg);
+  z-index: 2;
 }
 #pill3_container {
   width: 7.5%;
@@ -56,6 +58,7 @@ img {
   top: 45%;
   left: 22%;
   transform: rotate(-80deg);
+  z-index: 2;
 }
 #lemon_container {
   width: 10%;
@@ -63,6 +66,7 @@ img {
   top: 2%;
   left: 15%;
   transform: rotate(30deg);
+  z-index: 2;
 }
 #icecube_container {
   width: 15%;
@@ -70,6 +74,7 @@ img {
   top: -12.5%;
   left: 20%;
   transform: rotate(45deg);
+  z-index: 2;
 }
 #cuff_container {
   width: 10%;
@@ -83,6 +88,7 @@ img {
   top: 5%;
   right: 15%;
   transform: rotate(30deg);
+  z-index: 2;
 }
 /*Game foreground + størrelse på det */
 #game_foreground {
@@ -93,6 +99,8 @@ img {
   max-width: 100%;
   top: 25%;
   overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Game UI og elementer indenfor */
@@ -100,7 +108,7 @@ img {
   grid-area: 1 / 1;
   position: absolute;
   overflow: hidden;
-  left: 87%;
+  left: 86%;
   top: 2%;
 }
 #score_board {

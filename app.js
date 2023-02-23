@@ -282,3 +282,15 @@ function decrementPoints() {
 function displayPoints() {
   document.querySelector("#pill_count").textContent = points;
 }
+
+// GAME OVER AND LEVEL COMPLETE FUNKTIONER
+
+if (lives <= 0) {
+  gameOver();
+} else {
+  levelComplete();
+}
+
+function gameOver() {
+  console.log("Game over");
+}
