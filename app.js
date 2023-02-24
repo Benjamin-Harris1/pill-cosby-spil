@@ -15,6 +15,7 @@ function start() {
   document.querySelector("#pill3_container").classList.add("falling");
   document.querySelector("#lemon_container").classList.add("horizontalfall");
   document.querySelector("#cuff_container").classList.add("horizontal");
+  document.querySelector("#heart_container").classList.add("falling");
   // Klik
   document
     .querySelector("#pill1_container")
@@ -35,6 +36,10 @@ function start() {
   document
     .querySelector("#cuff_container")
     .addEventListener("click", clickCuff);
+
+  document
+    .querySelector("#heart_container")
+    .addEventListener("click", clickHeart);
 }
 
 // PILL 1 JS
@@ -187,12 +192,13 @@ function clickLemon() {
   document.querySelector("#lemon_container").classList.add("paused");
 
   // Tilføj forsvind animation
-  document.querySelector("#lemon_sprite").classList.add("zoom_in");
+  document.querySelector("#lemon_sprite").classList.add("zoom_out");
 
   document
     .querySelector("#lemon_container")
     .addEventListener("animationend", lemonGone);
   decrementPoints();
+  decrementLives();
 
   // Dissapear
 }
@@ -205,7 +211,7 @@ function lemonGone() {
   document;
 
   // fjern forsvind-animation
-  document.querySelector("#lemon_sprite").classList.remove("zoom_in");
+  document.querySelector("#lemon_sprite").classList.remove("zoom_out");
 
   // fjern pause
   document.querySelector("#lemon_container").classList.remove("paused");
@@ -233,7 +239,7 @@ function clickCuff() {
   document.querySelector("#cuff_container").classList.add("paused");
 
   // Tilføj forsvind animation
-  document.querySelector("#cuff_sprite").classList.add("zoom_in");
+  document.querySelector("#cuff_sprite").classList.add("zoom_out");
 
   document
     .querySelector("#cuff_container")
@@ -249,7 +255,7 @@ function cuffGone() {
   document;
 
   // fjern forsvind-animation
-  document.querySelector("#cuff_sprite").classList.remove("zoom_in");
+  document.querySelector("#cuff_sprite").classList.remove("zoom_out");
 
   // fjern pause
   document.querySelector("#cuff_container").classList.remove("paused");
@@ -265,12 +271,62 @@ function cuffGone() {
     .addEventListener("click", clickCuff);
 }
 
-// point og liv funktioner
+// HEART FUNCTIONS
+
+function clickHeart() {
+  console.log("Click heart");
+  // Forhindr gentagne clicks
+  document
+    .querySelector("#heart_container")
+    .removeEventListener("click", clickHeart);
+
+  // Stop heart container
+  document.querySelector("#heart_container").classList.add("paused");
+
+  // sæt forsvind-animation på heart
+  document.querySelector("#heart_sprite").classList.add("zoom_out");
+
+  // når forsvind-animation er færdig: heatGone
+  document
+    .querySelector("#heart_container")
+    .addEventListener("animationend", heartGone);
+
+  incrementLives();
+}
+
+function heartGone() {
+  // fjern event der bringer os herind
+  document
+    .querySelector("#heart_container")
+    .removeEventListener("animationend", heartGone);
+
+  // fjern forsvind-animation
+  document.querySelector("#heart_sprite").classList.remove("zoom_out");
+
+  // fjern pause
+  document.querySelector("#heart_container").classList.remove("paused");
+
+  // genstart falling animation
+  document.querySelector("#heart_container").classList.remove("falling");
+  document.querySelector("#heart_container").offsetWidth;
+  document.querySelector("#heart_container").classList.add("falling");
+
+  // gør det muligt at klikke på heart igen
+  document
+    .querySelector("#heart_container")
+    .addEventListener("click", clickHeart);
+}
+
+// POINT FUNCTIONS //
 
 function incrementPoints() {
-  console.log("incrementPoints");
+  console.log("Giv point");
   points++;
+  console.log("har nu " + points + " point");
   displayPoints();
+  if (points >= 10) {
+    levelComplete();
+  }
 }
 
 function decrementPoints() {
@@ -283,14 +339,44 @@ function displayPoints() {
   document.querySelector("#pill_count").textContent = points;
 }
 
+// LIFE FUNCTIONS
+
+function decrementLives() {
+  console.log("mist et liv");
+  if (lives <= 1) {
+    gameOver();
+  } else {
+    showDecrementedLives();
+  }
+  lives--;
+}
+
+function incrementLives() {
+  console.log("få et liv");
+  if (lives >= 3) {
+    lives;
+  } else lives++;
+  showIncrementedLives();
+}
+
+function showDecrementedLives() {
+  document.querySelector("#heart" + lives).classList.remove("active_heart");
+  document.querySelector("#heart" + lives).classList.add("broken_heart");
+}
+
+function showIncrementedLives() {
+  document.querySelector("#heart" + lives).classList.remove("broken_heart");
+  document.querySelector("#heart" + lives).classList.add("active_heart");
+}
+
 // GAME OVER AND LEVEL COMPLETE FUNKTIONER
 
-if (lives <= 0) {
-  gameOver();
-} else {
-  levelComplete();
+function levelComplete() {
+  console.log("Level complete");
+  document.querySelector("#level_complete").classList.remove("hidden");
 }
 
 function gameOver() {
   console.log("Game over");
+  document.querySelector("#game_over").classList.remove("hidden");
 }
