@@ -12,19 +12,19 @@ function start() {
   animationStart();
 
   regClick();
+
+  startPositions();
+
+  setupRestart();
 }
 
 function regClick() {
-  document.querySelector("#pill1_container").addEventListener("click", clickPill1);
-
-  document.querySelector("#pill2_container").addEventListener("click", clickPill2);
-
-  document.querySelector("#pill3_container").addEventListener("click", clickPill3);
-
-  document.querySelector("#lemon_container").addEventListener("click", clickLemon);
-
+  document.querySelector("#pill1_container").addEventListener("click", clickPill);
+  document.querySelector("#pill2_container").addEventListener("click", clickPill);
+  document.querySelector("#pill3_container").addEventListener("click", clickPill);
+  document.querySelector("#poison1_container").addEventListener("click", clickPoison);
+  document.querySelector("#poison2_container").addEventListener("click", clickPoison);
   document.querySelector("#cuff_container").addEventListener("click", clickCuff);
-
   document.querySelector("#heart_container").addEventListener("click", clickHeart);
 }
 
@@ -32,240 +32,209 @@ function animationStart() {
   document.querySelector("#pill1_container").classList.add("falling");
   document.querySelector("#pill2_container").classList.add("falling");
   document.querySelector("#pill3_container").classList.add("falling");
-  document.querySelector("#lemon_container").classList.add("sidetoside");
+  document.querySelector("#poison1_container").classList.add("sidetoside1");
+  document.querySelector("#poison2_container").classList.add("sidetoside2");
   document.querySelector("#cuff_container").classList.add("horizontal");
   document.querySelector("#heart_container").classList.add("falling");
 }
 
-// PILL 1 JS
-
-function clickPill1() {
-  console.log("Click pill1");
-  // forhindr gentagne clicks
-  document.querySelector("#pill1_container").removeEventListener("click", clickPill1);
-
-  // Stop pill container
-  document.querySelector("#pill1_container").classList.add("paused");
-
-  // Tilføj forsvind animation
-  document.querySelector("#pill1_sprite").classList.add("zoom_out");
-
-  document.querySelector("#pill1_container").addEventListener("animationend", pill1Gone);
-  incrementPoints();
-
-  // Dissapear
+function startPositions() {
+  document.querySelector("#pill1_container").classList.add("position1");
+  document.querySelector("#pill2_container").classList.add("position2");
+  document.querySelector("#pill3_container").classList.add("position3");
+  document.querySelector("#heart_container").classList.add("position4");
+  document.querySelector("#poison1_container").classList.add("position6");
+  document.querySelector("#poison2_container").classList.add("position7");
 }
 
-function pill1Gone() {
-  // fjern event der bringer os herind
-  document.querySelector("#pill1_container").removeEventListener("animationend", pill1Gone);
-  document;
-
-  // fjern forsvind-animation
-  document.querySelector("#pill1_sprite").classList.remove("zoom_out");
-
-  // fjern pause
-  document.querySelector("#pill1_container").classList.remove("paused");
-
-  // genstart falling animation
-  document.querySelector("#pill1_container").classList.remove("falling");
-  document.querySelector("#pill1_container").offsetWidth;
-  document.querySelector("#pill1_container").classList.add("falling");
-
-  // gør det muligt at klikke på coin igen
-  document.querySelector("#pill1_container").addEventListener("click", clickPill1);
+function setupRestart() {
+  document.querySelector("#pill1_container").addEventListener("animationiteration", pillRestart);
+  document.querySelector("#pill2_container").addEventListener("animationiteration", pillRestart);
+  document.querySelector("#pill3_container").addEventListener("animationiteration", pillRestart);
+  document.querySelector("#heart_container").addEventListener("animationiteration", heartRestart);
+  document.querySelector("#poison1_container").addEventListener("animationiteration", poisonRestart);
+  document.querySelector("#poison2_container").addEventListener("animationiteration", poisonRestart);
 }
+// PILL FUNCTIONS
 
-// PILL 2 JS
-
-function clickPill2() {
-  console.log("Click pill2");
+function clickPill() {
+  console.log("Click pill");
+  console.log(this);
+  let pill = this;
   // forhindr gentagne clicks
-  document.querySelector("#pill2_container").removeEventListener("click", clickPill2);
+  pill.removeEventListener("click", clickPill);
 
   // Stop pill container
-  document.querySelector("#pill2_container").classList.add("paused");
+  pill.classList.add("paused");
 
   // Tilføj forsvind animation
-  document.querySelector("#pill2_sprite").classList.add("zoom_out");
+  pill.querySelector("img").classList.add("zoom_out");
 
-  document.querySelector("#pill2_container").addEventListener("animationend", pill2Gone);
+  pill.addEventListener("animationend", pillGone);
   incrementPoints();
 }
 
-function pill2Gone() {
+function pillGone() {
+  let pill = this;
   // fjern event der bringer os herind
-  document.querySelector("#pill2_container").removeEventListener("animationend", pill2Gone);
-  document;
+  pill.removeEventListener("animationend", pillGone);
 
   // fjern forsvind-animation
-  document.querySelector("#pill2_sprite").classList.remove("zoom_out");
+  pill.querySelector("img").classList.remove("zoom_out");
 
   // fjern pause
-  document.querySelector("#pill2_container").classList.remove("paused");
+  pill.classList.remove("paused");
 
   // genstart falling animation
-  document.querySelector("#pill2_container").classList.remove("falling");
-  document.querySelector("#pill2_container").offsetWidth;
-  document.querySelector("#pill2_container").classList.add("falling");
-
-  // gør det muligt at klikke på coin igen
-  document.querySelector("#pill2_container").addEventListener("click", clickPill2);
+  pillRestart.call(this);
+  // gør det muligt at klikke på pill igen
+  pill.addEventListener("click", clickPill);
 }
 
-// PILL 3 JS
+function pillRestart() {
+  let pill = this;
+  pill.classList.remove("falling");
+  pill.classList.remove("position1", "position2", "position3");
+  pill.offsetWidth;
+  pill.classList.add("falling");
+  let pos = Math.floor(Math.random() * 3) + 1;
+  pill.classList.add("position" + pos);
+}
 
-function clickPill3() {
-  console.log("Click pill3");
+// POISON FUNCTIONS
+
+function clickPoison() {
+  console.log("Click poison");
+  console.log(this);
+  let poison = this;
   // forhindr gentagne clicks
-  document.querySelector("#pill1_container").removeEventListener("click", clickPill3);
+  poison.removeEventListener("click", clickPoison);
 
   // Stop pill container
-  document.querySelector("#pill3_container").classList.add("paused");
+  poison.classList.add("paused");
 
   // Tilføj forsvind animation
-  document.querySelector("#pill3_sprite").classList.add("zoom_out");
+  poison.querySelector("img").classList.add("zoom_in");
 
-  document.querySelector("#pill3_container").addEventListener("animationend", pill3Gone);
-  incrementPoints();
-}
-
-function pill3Gone() {
-  // fjern event der bringer os herind
-  document.querySelector("#pill3_container").removeEventListener("animationend", pill3Gone);
-  document;
-
-  // fjern forsvind-animation
-  document.querySelector("#pill3_sprite").classList.remove("zoom_out");
-
-  // fjern pause
-  document.querySelector("#pill3_container").classList.remove("paused");
-
-  // genstart falling animation
-  document.querySelector("#pill3_container").classList.remove("falling");
-  document.querySelector("#pill3_container").offsetWidth;
-  document.querySelector("#pill3_container").classList.add("falling");
-
-  // gør det muligt at klikke på coin igen
-  document.querySelector("#pill3_container").addEventListener("click", clickPill3);
-}
-
-// Lemon JS
-
-function clickLemon() {
-  console.log("Click lemon");
-  // forhindr gentagne clicks
-  document.querySelector("#lemon_container").removeEventListener("click", clickLemon);
-
-  // Stop pill container
-  document.querySelector("#lemon_container").classList.add("paused");
-
-  // Tilføj forsvind animation
-  document.querySelector("#lemon_sprite").classList.add("zoom_out");
-
-  document.querySelector("#lemon_container").addEventListener("animationend", lemonGone);
+  poison.addEventListener("animationend", poisonGone);
   decrementPoints();
   decrementLives();
-
-  // Dissapear
 }
 
-function lemonGone() {
+function poisonGone() {
+  let poison = this;
   // fjern event der bringer os herind
-  document.querySelector("#lemon_container").removeEventListener("animationend", lemonGone);
-  document;
+  poison.removeEventListener("animationend", poisonGone);
 
   // fjern forsvind-animation
-  document.querySelector("#lemon_sprite").classList.remove("zoom_out");
+  poison.querySelector("img").classList.remove("zoom_in");
 
   // fjern pause
-  document.querySelector("#lemon_container").classList.remove("paused");
+  poison.classList.remove("paused");
 
   // genstart falling animation
-  document.querySelector("#lemon_container").classList.remove("sidetoside");
-  document.querySelector("#lemon_container").offsetWidth;
-  document.querySelector("#lemon_container").classList.add("sidetoside");
+  poisonRestart.call(this);
 
   // gør det muligt at klikke på coin igen
-  document.querySelector("#lemon_container").addEventListener("click", clickLemon);
+  poison.addEventListener("click", clickPoison);
 }
 
-// HANDCUFF JS
+function poisonRestart() {
+  let poison = this;
+  poison.classList.remove("sidetoside1", "sidetoside2");
+  poison.classList.remove("position6", "position7");
+  poison.offsetWidth;
+  let sidetoside = Math.floor(Math.random() * 2) + 1;
+  poison.classList.add("sidetoside" + sidetoside);
+  // Math random for at få et nummer mellem 5 og 6, så der kan tilføjes position 5 eller 6
+  let pos = Math.floor(Math.random() * (7 - 6 + 1)) + 6;
+  poison.classList.add("position" + pos);
+}
+
+// HANDCUFF FUNCTIONS
 function clickCuff() {
   console.log("Click cuff");
+  let cuff = this;
   // forhindr gentagne clicks
-  document.querySelector("#cuff_container").removeEventListener("click", clickCuff);
+  cuff.removeEventListener("click", clickCuff);
 
   // Stop pill container
-  document.querySelector("#cuff_container").classList.add("paused");
+  cuff.classList.add("paused");
 
   // Tilføj forsvind animation
-  document.querySelector("#cuff_sprite").classList.add("zoom_out");
-
-  document.querySelector("#cuff_container").addEventListener("animationend", cuffGone);
+  cuff.querySelector("img").classList.add("zoom_out");
+  cuff.addEventListener("animationend", cuffGone);
   incrementPoints();
 }
 
 function cuffGone() {
+  let cuff = this;
   // fjern event der bringer os herind
-  document.querySelector("#cuff_container").removeEventListener("animationend", cuffGone);
-  document;
+  cuff.removeEventListener("animationend", cuffGone);
 
   // fjern forsvind-animation
-  document.querySelector("#cuff_sprite").classList.remove("zoom_out");
+  cuff.querySelector("img").classList.remove("zoom_out");
 
   // fjern pause
-  document.querySelector("#cuff_container").classList.remove("paused");
+  cuff.classList.remove("paused");
 
   // genstart falling animation
-  document.querySelector("#cuff_container").classList.remove("horizontal");
-  document.querySelector("#cuff_container").offsetWidth;
-  document.querySelector("#cuff_container").classList.add("horizontal");
+  cuff.classList.remove("horizontal");
+  cuff.offsetWidth;
+  cuff.classList.add("horizontal");
 
   // gør det muligt at klikke på coin igen
-  document.querySelector("#cuff_container").addEventListener("click", clickCuff);
+  cuff.addEventListener("click", clickCuff);
 }
 
 // HEART FUNCTIONS
 
 function clickHeart() {
   console.log("Click heart");
+  let heart = this;
   // Forhindr gentagne clicks
-  document.querySelector("#heart_container").removeEventListener("click", clickHeart);
+  heart.removeEventListener("click", clickHeart);
 
   // Stop heart container
-  document.querySelector("#heart_container").classList.add("paused");
+  heart.classList.add("paused");
 
   // sæt forsvind-animation på heart
-  document.querySelector("#heart_sprite").classList.add("zoom_out");
+  heart.querySelector("img").classList.add("zoom_out");
 
   // når forsvind-animation er færdig: heatGone
-  document.querySelector("#heart_container").addEventListener("animationend", heartGone);
+  heart.addEventListener("animationend", heartGone);
 
   incrementLives();
 }
 
 function heartGone() {
+  let heart = this;
   // fjern event der bringer os herind
-  document.querySelector("#heart_container").removeEventListener("animationend", heartGone);
+  heart.removeEventListener("animationend", heartGone);
 
   // fjern forsvind-animation
-  document.querySelector("#heart_sprite").classList.remove("zoom_out");
+  heart.querySelector("img").classList.remove("zoom_out");
 
   // fjern pause
-  document.querySelector("#heart_container").classList.remove("paused");
+  heart.classList.remove("paused");
 
   // genstart falling animation
-  document.querySelector("#heart_container").classList.remove("falling");
-  document.querySelector("#heart_container").offsetWidth;
-  document.querySelector("#heart_container").classList.add("falling");
+  heartRestart.call(this);
 
   // gør det muligt at klikke på heart igen
-  document.querySelector("#heart_container").addEventListener("click", clickHeart);
+  heart.addEventListener("click", clickHeart);
+}
+function heartRestart() {
+  let heart = this;
+  heart.classList.remove("falling");
+  heart.classList.remove("position1", "position2", "position3", "position4", "position5");
+  heart.offsetWidth;
+  heart.classList.add("falling");
+  let pos = Math.floor(Math.random() * 5) + 1;
+  heart.classList.add("position" + pos);
 }
 
 // POINT FUNCTIONS //
-
 function incrementPoints() {
   console.log("Giv point");
   points++;
@@ -287,7 +256,6 @@ function displayPoints() {
 }
 
 // LIFE FUNCTIONS
-
 function decrementLives() {
   console.log("mist et liv");
   if (lives <= 1) {
@@ -316,8 +284,7 @@ function showIncrementedLives() {
   document.querySelector("#heart" + lives).classList.add("active_heart");
 }
 
-// GAME OVER AND LEVEL COMPLETE FUNKTIONER
-
+// GAME OVER AND LEVEL COMPLETE FUNCTIONS
 function levelComplete() {
   console.log("Level complete");
   document.querySelector("#level_complete").classList.remove("hidden");

@@ -28,6 +28,18 @@ img {
   background-image: url(pictures/bar2.jpg);
   background-size: cover;
 }
+#game_background2 {
+  grid-area: 1 / 1;
+  background-image: url(pictures/barr-removebg-preview.png);
+  background-size: cover;
+  position: relative;
+  max-width: 100%;
+  top: 30vw;
+  right: 4%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+}
 
 /*Game Elements */
 #game_elements {
@@ -38,36 +50,36 @@ img {
 }
 
 #pill1_container {
-  width: 10%;
   position: absolute;
+  width: 8%;
   top: 20%;
-  left: 33%;
-}
-#pill2_container {
-  width: 10%;
-  position: absolute;
-  top: 20%;
-  left: 65%;
-}
-#pill3_container {
-  width: 7.5%;
-  position: absolute;
-  top: 45%;
-  left: 22%;
 }
 
-#lemon_container {
+#pill2_container {
+  position: absolute;
+  width: 8%;
+  top: 20%;
+}
+
+#pill3_container {
+  position: absolute;
+  width: 7%;
+  top: 45%;
+}
+
+#poison1_container {
   width: 12.5%;
   position: absolute;
-  top: 20%;
+
   left: 15%;
 }
-#icecube_container {
-  width: 15%;
+
+#poison2_container {
+  width: 9%;
   position: absolute;
-  top: -12.5%;
-  left: 20%;
+  left: 15%;
 }
+
 #cuff_container {
   width: 10%;
   position: absolute;
@@ -75,11 +87,34 @@ img {
   left: 15%;
 }
 #heart_container {
-  width: 12.5%;
   position: absolute;
+  width: 12%;
   top: 5%;
-  right: 15%;
 }
+
+/*Positions */
+.position1 {
+  left: 33%;
+}
+.position2 {
+  left: 65%;
+}
+.position3 {
+  left: 22%;
+}
+.position4 {
+  right: 5%;
+}
+.position5 {
+  left: 10%;
+}
+.position6 {
+  top: 20%;
+}
+.position7 {
+  top: 40%;
+}
+
 /*Game foreground + størrelse på det */
 #game_foreground {
   grid-area: 1 / 1;
@@ -91,6 +126,18 @@ img {
   overflow: hidden;
   pointer-events: none;
   z-index: 1;
+}
+#game_foreground2 {
+  grid-area: 1 / 1;
+  background-image: url(pictures/drinkfrgrnd-removebg-preview.png);
+  background-size: cover;
+  position: relative;
+  max-width: 100%;
+  top: 53%;
+  left: 1.5%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
 }
 
 /* Game UI og elementer indenfor */
@@ -174,7 +221,7 @@ img {
   }
 
   100% {
-    transform: translate(0, 400%) rotate(360deg);
+    transform: translate(0, 56.25vw) rotate(360deg);
   }
 }
 
@@ -193,13 +240,13 @@ img {
   }
 }
 
-.sidetoside {
-  animation-name: sidetoside;
+.sidetoside1 {
+  animation-name: sidetoside1;
   animation-duration: 9s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-@keyframes sidetoside {
+@keyframes sidetoside1 {
   0% {
     transform: translate(-300%, 0) rotate(0deg);
   }
@@ -211,53 +258,21 @@ img {
   }
 }
 
-.invertedhorizontal {
-  animation-name: invertedhorizontal;
+.sidetoside2 {
+  animation-name: sidetoside2;
   animation-duration: 3s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-@keyframes invertedhorizontal {
+@keyframes sidetoside2 {
   0% {
-    transform: translate(300%, 0) rotate(0deg);
+    transform: translate(1200%, 0) rotate(0deg);
   }
   100% {
-    transform: translate(-250%, 300%) rotate(360deg);
+    transform: translate(-300%, 0) rotate(-360deg);
   }
 }
-.hinge {
-  animation-name: hinge;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-}
-@keyframes hinge {
-  0% {
-    transform: rotate(0);
-    transform-origin: top left;
-    animation-timing-function: ease-in-out;
-  }
-  20%,
-  60% {
-    transform: rotate(80deg);
-    transform-origin: top left;
-    animation-timing-function: ease-in-out;
-  }
-  40% {
-    transform: rotate(60deg);
-    transform-origin: top left;
-    animation-timing-function: ease-in-out;
-  }
-  80% {
-    transform: rotate(60deg) translate(0);
-    opacity: 1;
-    transform-origin: top left;
-    animation-timing-function: ease-in-out;
-  }
-  100% {
-    transform: translate(0, 450%);
-    opacity: 1;
-  }
-}
+
 .flash {
   animation-name: flash;
   animation-duration: 1s;
@@ -305,11 +320,11 @@ img {
     transform: translate(0, 0) scale(1) rotate(0deg);
   }
   90% {
-    transform: translate(100%, 0) scale(20) rotate(90deg);
+    transform: translate(100%, 0) scale(5) rotate(90deg);
     opacity: 1;
   }
   100% {
-    transform: translate(100%, 0) scale(30) rotate(90deg);
+    transform: translate(100%, 0) scale(10) rotate(90deg);
     opacity: 0;
   }
 }
