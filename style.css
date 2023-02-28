@@ -34,6 +34,7 @@ img {
   grid-area: 1 / 1;
   position: relative;
   overflow: hidden;
+  z-index: 2;
 }
 
 #pill1_container {
@@ -41,40 +42,31 @@ img {
   position: absolute;
   top: 20%;
   left: 33%;
-  transform: rotate(-30deg);
-  z-index: 2;
 }
 #pill2_container {
   width: 10%;
   position: absolute;
   top: 20%;
   left: 65%;
-  transform: rotate(60deg);
-  z-index: 2;
 }
 #pill3_container {
   width: 7.5%;
   position: absolute;
   top: 45%;
   left: 22%;
-  transform: rotate(-80deg);
-  z-index: 2;
 }
+
 #lemon_container {
-  width: 10%;
+  width: 12.5%;
   position: absolute;
-  top: 2%;
+  top: 20%;
   left: 15%;
-  transform: rotate(30deg);
-  z-index: 2;
 }
 #icecube_container {
   width: 15%;
   position: absolute;
   top: -12.5%;
   left: 20%;
-  transform: rotate(45deg);
-  z-index: 2;
 }
 #cuff_container {
   width: 10%;
@@ -87,8 +79,6 @@ img {
   position: absolute;
   top: 5%;
   right: 15%;
-  transform: rotate(30deg);
-  z-index: 2;
 }
 /*Game foreground + størrelse på det */
 #game_foreground {
@@ -97,7 +87,7 @@ img {
   background-size: cover;
   position: relative;
   max-width: 100%;
-  top: 25%;
+  top: 17.5vw;
   overflow: hidden;
   pointer-events: none;
   z-index: 1;
@@ -108,8 +98,8 @@ img {
   grid-area: 1 / 1;
   position: absolute;
   overflow: hidden;
-  left: 86%;
-  top: 2%;
+  right: 1vw;
+  top: 1vw;
 }
 #score_board {
   display: grid;
@@ -202,18 +192,22 @@ img {
     transform: translate(900%, 0) rotate(360deg);
   }
 }
-.horizontalfall {
-  animation-name: horizontalfall;
-  animation-duration: 3s;
+
+.sidetoside {
+  animation-name: sidetoside;
+  animation-duration: 9s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-@keyframes horizontalfall {
+@keyframes sidetoside {
   0% {
     transform: translate(-300%, 0) rotate(0deg);
   }
+  50% {
+    transform: translate(1000%, 0) rotate(360deg);
+  }
   100% {
-    transform: translate(250%, 390%) rotate(360deg);
+    transform: translate(-300%, 0) rotate(0deg);
   }
 }
 
