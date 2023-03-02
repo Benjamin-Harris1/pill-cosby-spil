@@ -4,10 +4,25 @@ let points = 0;
 
 let lives = 3;
 
-window.addEventListener("load", start);
+let isGameRunning = false;
 
-function start() {
+window.addEventListener("load", ready);
+
+function ready() {
   console.log("JS is running");
+  document.querySelector("#btn_start").addEventListener("click", startGame);
+  document.querySelector("#btn_return").addEventListener("click", showStartScreen);
+  document.querySelector("#btn_restart").addEventListener("click", startGame);
+}
+
+function startGame() {
+  isGameRunning = true;
+
+  resetLives();
+
+  resetPoints();
+
+  showGame();
 
   animationStart();
 
@@ -55,8 +70,35 @@ function setupRestart() {
   document.querySelector("#poison1_container").addEventListener("animationiteration", poisonRestart);
   document.querySelector("#poison2_container").addEventListener("animationiteration", poisonRestart);
 }
-// PILL FUNCTIONS
 
+function showStartScreen() {
+  document.querySelector("#start").classList.remove("hidden");
+  document.querySelector("#game_over").classList.add("hidden");
+  document.querySelector("#level_complete").classList.add("hidden");
+}
+
+function resetLives() {
+  lives = 3;
+  document.querySelector("#heart1").classList.remove("broken_heart");
+  document.querySelector("#heart2").classList.remove("broken_heart");
+  document.querySelector("#heart3").classList.remove("broken_heart");
+  document.querySelector("#heart1").classList.add("active_heart");
+  document.querySelector("#heart2").classList.add("active_heart");
+  document.querySelector("#heart3").classList.add("active_heart");
+}
+
+function resetPoints() {
+  points = 0;
+  displayPoints();
+}
+
+function showGame() {
+  document.querySelector("#start").classList.add("hidden");
+  document.querySelector("#game_over").classList.add("hidden");
+  document.querySelector("#level_complete").classList.add("hidden");
+}
+
+// PILL FUNCTIONS
 function clickPill() {
   console.log("Click pill");
   console.log(this);
@@ -86,7 +128,9 @@ function pillGone() {
   pill.classList.remove("paused");
 
   // genstart falling animation
-  pillRestart.call(this);
+  if (isGameRunning) {
+    pillRestart.call(this);
+  }
   // gør det muligt at klikke på pill igen
   pill.addEventListener("click", clickPill);
 }
@@ -130,7 +174,9 @@ function poisonGone() {
   poison.querySelector("img").classList.remove("zoom_in");
 
   // fjern pause
-  poison.classList.remove("paused");
+  if (isGameRunning) {
+    poison.classList.remove("paused");
+  }
 
   // genstart falling animation
   poisonRestart.call(this);
@@ -179,9 +225,11 @@ function cuffGone() {
   cuff.classList.remove("paused");
 
   // genstart falling animation
-  cuff.classList.remove("horizontal");
-  cuff.offsetWidth;
-  cuff.classList.add("horizontal");
+  if (isGameRunning) {
+    cuff.classList.remove("horizontal");
+    cuff.offsetWidth;
+    cuff.classList.add("horizontal");
+  }
 
   // gør det muligt at klikke på coin igen
   cuff.addEventListener("click", clickCuff);
@@ -288,9 +336,33 @@ function showIncrementedLives() {
 function levelComplete() {
   console.log("Level complete");
   document.querySelector("#level_complete").classList.remove("hidden");
+  stopGame();
 }
 
 function gameOver() {
   console.log("Game over");
   document.querySelector("#game_over").classList.remove("hidden");
+  stopGame();
+}
+
+function stopGame() {
+  // Stop animations
+
+  isGameRunning = false;
+  document.querySelector("#pill1_container").classList.remove("falling");
+  document.querySelector("#pill2_container").classList.remove("falling");
+  document.querySelector("#pill3_container").classList.remove("falling");
+  document.querySelector("#poison1_container").classList.remove("sidetoside1", "sidetoside2");
+  document.querySelector("#poison2_container").classList.remove("sidetoside1", "sidetoside2");
+  document.querySelector("#cuff_container").classList.remove("horizontal");
+  document.querySelector("#heart_container").classList.remove("falling");
+
+  // Remove click
+  document.querySelector("#pill1_container").removeEventListener("click", clickPill);
+  document.querySelector("#pill2_container").removeEventListener("click", clickPill);
+  document.querySelector("#pill3_container").removeEventListener("click", clickPill);
+  document.querySelector("#poison1_container").removeEventListener("click", clickPoison);
+  document.querySelector("#poison2_container").removeEventListener("click", clickPoison);
+  document.querySelector("#cuff_container").removeEventListener("click", clickCuff);
+  document.querySelector("#heart_container").removeEventListener("click", clickHeart);
 }

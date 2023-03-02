@@ -70,7 +70,6 @@ img {
 #poison1_container {
   width: 12.5%;
   position: absolute;
-
   left: 15%;
 }
 
@@ -144,7 +143,7 @@ img {
 #game_ui {
   grid-area: 1 / 1;
   position: absolute;
-  overflow: hidden;
+  overflow: visible;
   right: 1vw;
   top: 1vw;
 }
@@ -167,6 +166,41 @@ img {
   display: grid;
   grid-template-columns: 5.5em 5.5em 5.5em;
   width: 100%;
+}
+/* Timer */
+
+#time_board {
+  position: relative;
+}
+
+#time_container {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 30/6;
+  border: 2px solid black;
+  background-color: rgba(208, 204, 204, 0.383);
+  top: 110%;
+}
+
+#time_sprite {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: lime;
+  transform-origin: right;
+}
+
+#start {
+  grid-area: 1 /1;
+  z-index: 999;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-image: url(pictures/COSBY.jpg);
+  background-size: cover;
+  color: #ffc72e;
+  font-size: xx-large;
+  text-align: center;
 }
 
 #level_complete {
@@ -203,7 +237,9 @@ img {
 
 .hidden,
 #game_over.hidden,
-#level_complete.hidden {
+#level_complete.hidden,
+#game.hidden,
+#start.hidden {
   display: none;
 }
 
@@ -281,13 +317,13 @@ img {
 }
 @keyframes flash {
   0% {
-    opacity: 0;
+    opacity: 0.2;
   }
   50% {
     opacity: 1;
   }
   100% {
-    opacity: 0;
+    opacity: 0.2;
   }
 
   /* Animationer til click event */
@@ -331,4 +367,36 @@ img {
 
 .paused {
   animation-play-state: paused;
+}
+
+/* Button styling */
+#btn_start {
+  padding: 0.5em 1em;
+  font-size: 2em;
+  margin: auto;
+  background-color: #ffad01;
+  color: #fff4bf;
+  border: 10px solid #ffc72e;
+  cursor: pointer;
+  border-radius: 10px;
+}
+#btn_return {
+  padding: 0.5em 1em;
+  font-size: 2em;
+  margin: auto;
+  background-color: #ffad01;
+  color: #fff4bf;
+  border: 10px solid #ffc72e;
+  cursor: pointer;
+  border-radius: 10px;
+}
+#btn_restart {
+  padding: 0.5em 1em;
+  font-size: 2em;
+  margin: auto;
+  background-color: #ff3c01;
+  color: black;
+  border: 10px solid black;
+  cursor: pointer;
+  border-radius: 10px;
 }

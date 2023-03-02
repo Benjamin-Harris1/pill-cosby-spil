@@ -47,14 +47,25 @@
             <img id="heart2" src="pictures/heart.png" class="active_heart" />
             <img id="heart3" src="pictures/heart.png" class="active_heart" />
           </div>
+          <div id="time_board"></div>
+          <div id="time_container">
+            <div id="time_sprite" class=""></div>
+          </div>
         </div>
       </div>
-      <div id="start"></div>
+      <div id="start">
+        <h2>Pill Cosby Game</h2>
+        <p>Prevent 10 pills from getting into your drink before the time expires</p>
+        <p>WARNING: Don't touch the bottles that Cosby is tossing around, you never know what is inside</p>
+        <button id="btn_start" class="flash">Start</button>
+      </div>
       <div id="game_over" class="hidden">
         <h2>Game Over</h2>
+        <button id="btn_restart" class="flash">Try again!</button>
       </div>
       <div id="level_complete" class="hidden">
         <h2>Level Complete</h2>
+        <button id="btn_return" class="flash">Return to start</button>
       </div>
     </div>
     <script src="app.js"></script>
