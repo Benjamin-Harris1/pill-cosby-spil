@@ -24,6 +24,8 @@ function startGame() {
 
   showGame();
 
+  startTime();
+
   animationStart();
 
   regClick();
@@ -31,6 +33,20 @@ function startGame() {
   startPositions();
 
   setupRestart();
+}
+
+function startTime() {
+  document.querySelector("#time_sprite").classList.add("shrink");
+  document.querySelector("#time_sprite").addEventListener("animationend", timeisUp);
+}
+
+function timeisUp() {
+  console.log("Time is up");
+  if (points >= 10) {
+    levelComplete();
+  } else {
+    gameOver();
+  }
 }
 
 function regClick() {
@@ -288,9 +304,9 @@ function incrementPoints() {
   points++;
   console.log("har nu " + points + " point");
   displayPoints();
-  if (points >= 10) {
-    levelComplete();
-  }
+  // if (points >= 10) { Udkommenteret så man får level complete hvis når tiden er løbet
+  // levelComplete();
+  //}
 }
 
 function decrementPoints() {

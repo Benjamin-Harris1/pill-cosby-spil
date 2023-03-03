@@ -325,9 +325,31 @@ img {
   100% {
     opacity: 0.2;
   }
-
-  /* Animationer til click event */
 }
+
+.shrink {
+  animation-name: shrink;
+  animation-duration: 20s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes shrink {
+  0% {
+    scale: 1 1;
+    background-color: lime;
+  }
+  50% {
+    background-color: rgb(255, 230, 0);
+  }
+  100% {
+    scale: 0 1;
+    background-color: red;
+  }
+}
+
+/* Animationer til click event */
 .zoom_out {
   animation-name: zoom_out;
   animation-duration: 1s;
