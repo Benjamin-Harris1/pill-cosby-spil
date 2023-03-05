@@ -141,16 +141,14 @@ img {
 
 /* Game UI og elementer indenfor */
 #game_ui {
-  grid-area: 1 / 1;
-  position: absolute;
-  overflow: visible;
-  right: 1vw;
-  top: 1vw;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
 }
 #score_board {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1em;
+  position: absolute;
+  width: 10%;
+  right: 97%;
 }
 #pill_count {
   font-size: 45px;
@@ -159,35 +157,31 @@ img {
   color: white;
 }
 #pill_image {
-  width: 4em;
+  width: 5em;
 }
 #healthbar_container {
-  margin-block-start: 1em;
+  position: absolute;
   display: grid;
   grid-template-columns: 5.5em 5.5em 5.5em;
   width: 100%;
+  right: 15%;
+  top: 7.5%;
 }
 /* Timer */
-
-#time_board {
-  position: relative;
-}
 
 #time_container {
   position: absolute;
   width: 100%;
-  aspect-ratio: 30/6;
-  border: 2px solid black;
-  background-color: rgba(208, 204, 204, 0.383);
-  top: 110%;
+  aspect-ratio: 16/9;
+  top: 1.5%;
+  right: 99.5%;
 }
 
 #time_sprite {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: lime;
-  transform-origin: right;
+  width: 15.5%;
+  height: 5.75%;
+  background-color: limegreen;
+  transform-origin: left;
 }
 
 #start {
@@ -213,6 +207,7 @@ img {
   color: #ffffff;
   font-size: xx-large;
   font-family: Goudy stout;
+  text-align: center;
 }
 
 #game_over {
@@ -222,9 +217,10 @@ img {
   justify-content: center;
   align-content: center;
   background-image: linear-gradient(150deg, #c90303 0%, #790909 100%);
-  color: #ffffff;
+  color: black;
   font-size: xx-large;
   font-family: Goudy stout;
+  text-align: center;
 }
 
 .active_heart {

@@ -47,7 +47,6 @@
             <img id="heart2" src="pictures/heart.png" class="active_heart" />
             <img id="heart3" src="pictures/heart.png" class="active_heart" />
           </div>
-          <div id="time_board"></div>
           <div id="time_container">
             <div id="time_sprite"></div>
           </div>
@@ -60,15 +59,24 @@
         <button id="btn_start" class="flash">Start</button>
       </div>
       <div id="game_over" class="hidden">
+        <h2>Cosby roofied your drink</h2>
         <h2>Game Over</h2>
         <button id="btn_restart" class="flash">Try again!</button>
       </div>
       <div id="level_complete" class="hidden">
-        <h1>Good job, you prevented Cosby from drugging you!</h1>
+        <h1>Good job, you didn't get roofied by Cosby!</h1>
         <h2>Level Complete</h2>
         <button id="btn_return" class="flash">Return to start</button>
       </div>
     </div>
+
+    <!-- Audio files-->
+    <audio id="backgroundsound" src="sounds/tense-detective-looped-drone-10054.mp3"></audio>
+    <audio id="pill_ding" src="sounds/ding-sound-effect_2.mp3"></audio>
+    <audio id="poison_sound" src="sounds/oof.mp3"></audio>
+    <audio id="heartsound" src="sounds/mixkit-fairy-arcade-sparkle-866.wav"></audio>
+    <audio id="gameoversound" src="sounds/gameover.wav"></audio>
+    <audio id="levelcompletesound" src="sounds/level-completed.mp3"></audio>
     <script src="app.js"></script>
   </body>
 </html>

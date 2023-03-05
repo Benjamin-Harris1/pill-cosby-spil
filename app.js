@@ -18,6 +18,10 @@ function ready() {
 function startGame() {
   isGameRunning = true;
 
+  // Start background music
+  document.querySelector("#backgroundsound").volume = 0.5;
+  document.querySelector("#backgroundsound").play();
+
   resetLives();
 
   resetPoints();
@@ -119,6 +123,11 @@ function clickPill() {
   console.log("Click pill");
   console.log(this);
   let pill = this;
+
+  // Sound
+  document.querySelector("#pill_ding").currentTime = 0;
+  document.querySelector("#pill_ding").volume = 0.5;
+  document.querySelector("#pill_ding").play();
   // forhindr gentagne clicks
   pill.removeEventListener("click", clickPill);
 
@@ -170,6 +179,9 @@ function clickPoison() {
   // forhindr gentagne clicks
   poison.removeEventListener("click", clickPoison);
 
+  // Audio
+  document.querySelector("#poison_sound").currentTime = 0;
+  document.querySelector("#poison_sound").play();
   // Stop pill container
   poison.classList.add("paused");
 
@@ -217,6 +229,9 @@ function poisonRestart() {
 function clickCuff() {
   console.log("Click cuff");
   let cuff = this;
+  document.querySelector("#pill_ding").currentTime = 0;
+  document.querySelector("#pill_ding").volume = 0.5;
+  document.querySelector("#pill_ding").play();
   // forhindr gentagne clicks
   cuff.removeEventListener("click", clickCuff);
 
@@ -256,6 +271,11 @@ function cuffGone() {
 function clickHeart() {
   console.log("Click heart");
   let heart = this;
+
+  // Sound
+  document.querySelector("#heartsound").currentTime = 0;
+  document.querySelector("#heartsound").volume = 0.5;
+  document.querySelector("#heartsound").play();
   // Forhindr gentagne clicks
   heart.removeEventListener("click", clickHeart);
 
@@ -351,12 +371,16 @@ function showIncrementedLives() {
 // GAME OVER AND LEVEL COMPLETE FUNCTIONS
 function levelComplete() {
   console.log("Level complete");
+  document.querySelector("#levelcompletesound").volume = 0.5;
+  document.querySelector("#levelcompletesound").play();
   document.querySelector("#level_complete").classList.remove("hidden");
   stopGame();
 }
 
 function gameOver() {
   console.log("Game over");
+  document.querySelector("#gameoversound").volume = 0.5;
+  document.querySelector("#gameoversound").play();
   document.querySelector("#game_over").classList.remove("hidden");
   stopGame();
 }
@@ -372,6 +396,7 @@ function stopGame() {
   document.querySelector("#poison2_container").classList.remove("sidetoside1", "sidetoside2");
   document.querySelector("#cuff_container").classList.remove("horizontal");
   document.querySelector("#heart_container").classList.remove("falling");
+  document.querySelector("#time_sprite").classList.remove("shrink");
 
   // Remove click
   document.querySelector("#pill1_container").removeEventListener("click", clickPill);
@@ -381,4 +406,10 @@ function stopGame() {
   document.querySelector("#poison2_container").removeEventListener("click", clickPoison);
   document.querySelector("#cuff_container").removeEventListener("click", clickCuff);
   document.querySelector("#heart_container").removeEventListener("click", clickHeart);
+
+  // Stop sounds
+  document.querySelector("#backgroundsound").pause();
+  document.querySelector("#pill_ding").pause();
+  document.querySelector("#poison_sound").pause();
+  document.querySelector("#heartsound").pause();
 }
