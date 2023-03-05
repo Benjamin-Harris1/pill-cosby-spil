@@ -46,7 +46,7 @@ function startTime() {
 
 function timeisUp() {
   console.log("Time is up");
-  if (points >= 10) {
+  if (points >= 15) {
     levelComplete();
   } else {
     gameOver();
