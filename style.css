@@ -181,15 +181,18 @@ img {
 
 #time_container {
   position: absolute;
-  width: 100%;
-  aspect-ratio: 16/9;
-  top: 1.5%;
-  right: 99.5%;
+  width: 10%;
+  aspect-ratio: 30/6;
+  border: 2px solid black;
+  background-color: grey;
+  top: 2vh;
+  right: 189%;
 }
 
 #time_sprite {
-  width: 15.5%;
-  height: 5.75%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background-color: limegreen;
   transform-origin: left;
 }
@@ -202,7 +205,7 @@ img {
   align-content: center;
   background-image: url(pictures/COSBY.jpg);
   background-size: cover;
-  color: #ffc72e;
+  color: #fff562;
   font-size: xx-large;
   text-align: center;
 }
@@ -213,8 +216,9 @@ img {
   display: grid;
   justify-content: center;
   align-content: center;
-  background-image: linear-gradient(150deg, #20c903 0%, #09793b 100%);
-  color: #ffffff;
+  background-image: url(pictures/cosbyevil.jpg);
+  background-size: cover;
+  color: #e4bd10;
   font-size: xx-large;
   font-family: Goudy stout;
   text-align: center;
