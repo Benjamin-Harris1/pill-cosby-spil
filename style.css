@@ -91,6 +91,15 @@ img {
   top: 5%;
 }
 
+#cosby_container {
+  position: absolute;
+  width: 12.5%;
+  top: 34.5%;
+  right: 15%;
+  opacity: 1;
+  z-index: -1;
+}
+
 /*Positions */
 .position1 {
   left: 33%;
@@ -167,6 +176,7 @@ img {
   right: 15%;
   top: 7.5%;
 }
+
 /* Timer */
 
 #time_container {
