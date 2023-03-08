@@ -324,7 +324,7 @@ function incrementPoints() {
   points++;
   console.log("har nu " + points + " point");
   displayPoints();
-  // if (points >= 10) { Udkommenteret så man får level complete hvis når tiden er løbet
+  // if (points >= 15) { Udkommenteret så man får level complete når tiden er løbet
   // levelComplete();
   //}
 }

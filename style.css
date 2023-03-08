@@ -196,7 +196,7 @@ img {
   background-color: limegreen;
   transform-origin: left;
 }
-
+/* Start, level complete og game over skærm */
 #start {
   grid-area: 1 /1;
   z-index: 999;
